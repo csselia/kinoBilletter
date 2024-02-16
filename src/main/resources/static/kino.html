@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kinobilletter</title>
+    <!--Styler feilmeldingene rød, men ville egentlig gjort dette i css. Alle table data-elementer viss id begynner med error skal være røde-->
+    <style>
+        td[id^="error"] {
+            color: red;
+        }
+    </style>
+    <script src="kino.js"></script>
+</head>
+
+<body>
+<h1>Kinobillettbestilling</h1>
+
+<!--Lager en tabell for inputs. Den første er en drop-down meny for å velge filmer, og resten er personalia. Jeg setter en
+egen id på feilmeldinger for hver input i tabellen.-->
+
+<table>
+    <tr>
+        <td>
+            <select id="velgFilm" title="Velg en film">
+                <option>--Velg film--</option>
+                <option>Barbie</option>
+                <option>Dracula</option>
+                <option>Harry Potter og ildbegeret</option>
+                <option>Oppenheimer</option>
+                <option>Ringenes Herre - Atter en konge</option>
+                <option>Spiderman</option>
+                <option>Parasite</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td id="errorFilm"></td></tr>
+
+    <!--Skriver inn en tittel slik at når man hover musen over feltet får brukeren en pekepinn hva som er tillatt i feltet. Feltene tar inn
+    text-input. Egen data table celle for feilmeldinger så det vises ved siden av utfyllingsfeltet-->
+    <tr><td>Antall</td>
+        <td><input type="text" id="antall" title="Kun tall er tillatt"></td>
+        <td id="errorAntall"></td></tr>
+
+    <tr><td>Fornavn</td>
+        <td><input type="text" id="fornavn" title="Kun bokstaver tillatt"></td>
+        <td id="errorFornavn"></td></tr>
+
+    <tr><td>Etternavn</td>
+        <td><input type="text" id="etternavn"  title="Kun bokstaver tillatt"></td>
+        <td id="errorEtternavn"></td></tr>
+
+    <tr><td>Telefonnummer</td>
+        <td><input type="text" id="telefonnummer" title="Kun tall er tillatt"></td>
+        <td id="errorTlf"></td></tr>
+
+    <tr><td>E-post</td><td>
+        <input type="text" id="epost" title="Kun bokstaver og tegn tillatt"></td></td>
+        <td id="errorEpost"></td></tr>
+
+    <!--Når brukeren trykker på knappen vil funksjonen registrer utløses-->
+    <tr>
+        <td><button onclick="registrer()">Kjøp billett</button></td>
+    </tr>
+</table>
+
+<h2>Vis alle kjøpte billetter</h2>
+<div id="kjøpteBilletter"></div>
+<br>
+
+<!--Når brukeren trykker på denne knappen utløses slett funksjonen-->
+
+<button onclick="slett()">Slett alle billetter</button>
+
+</body>
+</html>
