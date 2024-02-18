@@ -99,7 +99,7 @@ Dersom det ikke matcher skal en feilmelding pushes inn i feilmeldingsarrayet*/
         errorMeldinger.push("Velg en film");
     }
 
-    /*Hvis ingenting er valgt fra option, eller andre felt = feilmelding inn i feilmeldings-array om at alle felter må fylles*/
+    /*Hvis ingenting er valgt fra option, eller andre felt = feilmelding inn i feilmeldings-array om at alle felt må fylles*/
     if (!antall || !fornavn || !etternavn || !telefonnummer ||
         !epost) {
         errorMeldinger.push("Alle felt må fylles ut");
@@ -178,7 +178,7 @@ Dersom det ikke matcher skal en feilmelding pushes inn i feilmeldingsarrayet*/
     }
 
 
-    /*Dersom alle felt ikke er fylt ut, vis feilmelding om at alle felter skal fylles ut. Istede for å bruke document.getElementById
+    /*Dersom alle felt ikke er fylt ut, vis feilmelding om at alle felt skal fylles ut. Istede for å bruke document.getElementById
     på alle attributtene, én og én som jeg har gjort tidligere putter jeg alle feilmeldingsID-tagene i et array. Deretter lar jeg en
     forløkke iterere gjennom hele arrayet når "Alle felt må fylles ut"-feilmeldingen detekteres.
     Bruker document.getElementById for å få tilgang til HTML-dokumentet, legger inn variabelen felt som parameter og bruker
