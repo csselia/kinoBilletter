@@ -1,13 +1,9 @@
 # kinoBilletter
 DATA1700 - Oblig 1 - Bestilling av kinobilletter
 
-Oslomet brukernavn: s178905
-
 Github brukernavn: csselia
 
 Github repo URL: https://github.com/csselia/kinoBilletter
-
-Fullt navn: Cecilia Dinh
 
 Kort beskrivelse av applikasjon (5-10 setninger):
 Applikasjon for bestilling av kinobilletter.
