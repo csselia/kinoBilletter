@@ -8,7 +8,6 @@ let kinoBilletterRegister = [];
 Starter med å definere at tabellen skal ha en border så det blir enklere å se den. En tabellrad (<tr>) med alle attributtene som overskrifter (table headings (<th>)).
 Lager en forløkke som iterer gjennom elementene i arrayet kinoBilletterRegister og legger informasjonen til 'ut'-strengen*/
 function visBilletter() {
-    /* Tabell med kantlinje så den er enklere å se */
     let ut = "<table border='1'><tr>" +
         "<th>Film</th><th>Antall</th><th>Fornavn</th><th>Etternavn</th><th>Telefonnummer</th><th>E-post</th>"
         + "</tr>";
@@ -30,9 +29,9 @@ function visBilletter() {
     }
     document.getElementById("kjøpteBilletter").innerHTML = ut;
 } /*Deretter oppdateres HTML innholdet til id=kjøpteBilletter ved hjelp av
-document.getElementById. Bruker innerHTML for å erstatte innholdet med tabellen som nå er lagret i variabelen 'ut.' */
+document.getElementById. Bruker innerHTML for å erstatte innholdet med det som nå er lagret i variabelen 'ut.', altså tabellen */
 
-/*Lager en funksjon som skal registrere inputene. Lager en konstant variabel og bruker document.getElementById, en metode som brukes til å hente
+/*Lager en funksjon som skal registrere inputene. Lager en konstant variabel, gir passende navn og bruker document.getElementById, en metode som brukes til å hente
 et HTML-element ved hjelp av Id-tagen. På siden skriver brukeren inn sitt svar i inputboks. Denne informasjonen hentes via document.getElementById og vi setter variabelens
 verdi lik den input-verdi vi får fra HTML-elementet.
 */
@@ -47,12 +46,13 @@ function registrer() {
 
     /*Valideringer og feilmeldinger*/
 
-    /*Lager array for feilmeldinger, dette er for at feilmeldingene skal komme opp samtidig. */
+    /*Lager array for feilmeldinger for at feilmeldingene skal komme opp samtidig. */
     let errorMeldinger = [];
 
     /*Feilmelding-scenarioer*/
 
-    /*Kun bokstaver: Fornavn må matche og begynne på bokstaver fra A til Z, enten i små eller store bokstaver.Dette mønsteret er fra /^=start til $=slutt av strengen.
+    /*Kun bokstaver: Fornavn må matche og begynne på bokstaver fra A til Å, enten i små eller store bokstaver.
+    Dette mønsteret er fra /^=start til $=slutt av strengen.
     Dersom det ikke matcher skal en feilmelding pushes inn i feilmeldingsarrayet*/
 
     if(!fornavn.match(/^[A-Za-zæøå]*$/)){
@@ -64,7 +64,8 @@ function registrer() {
         errorMeldinger.push("Vennligst skriv inn gyldig fornavn")
     }
 
-    /*Kun bokstaver: Etternavn må matche og begynne på bokstaver fra A til Z, enten i små eller store bokstaver.Dette mønsteret er fra /^=start til $=slutt av strengen.
+    /*Kun bokstaver: Etternavn må matche og begynne på bokstaver fra A til Å, enten i små eller store bokstaver.
+    Dette mønsteret er fra /^=start til $=slutt av strengen.
 Dersom det ikke matcher skal en feilmelding pushes inn i feilmeldingsarrayet*/
     if(!etternavn.match(/^[A-Za-zæøå]*$/)){
         errorMeldinger.push("Skriv inn bokstaver")
@@ -75,16 +76,21 @@ Dersom det ikke matcher skal en feilmelding pushes inn i feilmeldingsarrayet*/
         errorMeldinger.push("Vennligst skriv inn gyldig etternavn")
     }
 
-    /*  /^= starten
-    \w+ = kun bokstaver, tall eller understrek,
-    ([.-]?\w+)* = for punktum etterfulgt av enten bokstaver, tall eller understrek.
-    @ = alfakrøll etterfulgt av domenenavn \w+ som kan være bokstaver, tall eller understrek.
-    ([._]?\w+)* = tillatter punktum eller understrek, bokstaver og tall i domenenavnet.
-    (\.\w{2,3})+$/) = Matcher et punktum etterfulgt av 2 eller 3 alfanumeriske tegn for domene
-    $ =slutten av en streng.
+/*   Bruker regex for valideringer for epost
 
-Dersom det ikke matcher skal en feilmelding pushes inn i feilmeldingsarrayet*/
-    if(!epost.match(/^\w+([._]?\w+)*@\w+([._]?\w+)*(\.\w{2,3})+$/)){
+    /^= starten av regex-uttrykket
+    \w+ = kun bokstaver, tall eller understrek i brukernavnet
+    ([.-]?\w+)* = tillater et punktum eller bindestrek etterfulgt av bokstaver, tall eller understrek i brukernavnet
+    @ = alfakrøll skiller brukernavn og domenenavn
+    \w+ = bokstaver, tall eller understrek i domenenavnet
+    ([.-]?\w+)* = tillater punktum eller bindestrek etterfulgt av bokstaver, tall  eller understrek i domenenavnet.
+    (\.\w{2,3})+$/) = Matcher et punktum etterfulgt av 2 eller 3 alfanumeriske (bokstaver, tall, understrek) tegn for domene,
+    eks com eller no
+    $ =slutten av en streng.
+    */
+
+/*Dersom det ikke matcher skal en feilmelding pushes inn i feilmeldingsarrayet*/
+    if(!epost.match(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/)){
         errorMeldinger.push("Skriv inn gyldig E-post")
     }
 
@@ -96,7 +102,7 @@ Dersom det ikke matcher skal en feilmelding pushes inn i feilmeldingsarrayet*/
     /*Hvis ingenting er valgt fra option, eller andre felt = feilmelding inn i feilmeldings-array om at alle felter må fylles*/
     if (!antall || !fornavn || !etternavn || !telefonnummer ||
         !epost) {
-        errorMeldinger.push("Alle felter må fylles ut");
+        errorMeldinger.push("Alle felt må fylles ut");
     }
 
     /* Hvis antall ikke er et tall (isNotANumber), feilmelding inn i feilmeldings-array*/
@@ -110,7 +116,7 @@ Dersom det ikke matcher skal en feilmelding pushes inn i feilmeldingsarrayet*/
     }
 
     if(telefonnummer.length<8){
-        errorMeldinger.push("Dette er ikke gyldig norsk telefonnummer. Minst 8 siffer");
+        errorMeldinger.push("Dette er ikke et gyldig norsk telefonnummer. Minst 8 siffer");
     }
 
 
@@ -153,8 +159,8 @@ Dersom det ikke matcher skal en feilmelding pushes inn i feilmeldingsarrayet*/
         document.getElementById("errorEtternavn").textContent = "";
     }
 
-    /*E-post må være alfanumeriske tall, der punktum og understrek er tillatt og domenenavn er på 2-3 tegn. Feilmeldingen forsvinner når betingelsen
-    ikke lengre er oppfylt*/
+    /*E-post valideringene for alfanumeriske tegn, valgfri punktum eller bindestrek og rekkefølge for brukernavn, @ og domenenavn
+    må være riktig. Rettes det opp forsvinner feilmeldingen*/
     if(errorMeldinger.includes("Skriv inn gyldig E-post")){
         document.getElementById("errorEpost").textContent ="Skriv inn gyldig E-post";
     }
@@ -165,23 +171,23 @@ Dersom det ikke matcher skal en feilmelding pushes inn i feilmeldingsarrayet*/
     /*Telefonnummer må være et tall. Hvis det rettes opp forsvinner feilmeldingen*/
     if (errorMeldinger.includes("Telefonnummer må være et tall")) {
         document.getElementById("errorTlf").textContent = "Telefonnummer må være et tall";
-    } else if(errorMeldinger.includes("Dette er ikke gyldig norsk telefonnummer. Minst 8 siffer")) {
-        document.getElementById("errorTlf").textContent = "Dette er ikke gyldig norsk telefonnummer. Minst 8 siffer";
+    } else if(errorMeldinger.includes("Dette er ikke et gyldig norsk telefonnummer. Minst 8 siffer")) {
+        document.getElementById("errorTlf").textContent = "Dette er ikke et gyldig norsk telefonnummer. Minst 8 siffer";
     } else{
         document.getElementById("errorTlf").textContent = "";
     }
 
 
     /*Dersom alle felt ikke er fylt ut, vis feilmelding om at alle felter skal fylles ut. Istede for å bruke document.getElementById
-    på alle attributtene, én og én som jeg har gjort tidligere putter jeg dem i et array og lar en forløkke iterere gjennom hele arrayet når feilmeldingen
-    "Alle felter må fylles ut" detekteres. Dette er for at koden ikke skal være så lang og fordi jeg da får opp feilmeldingen på alle feltene samtidig.
-     Bruker getElementById-tagen og skriver som parameter inn arrayet felt for å endre feilmeldingsfeltene i HTML og deretter oppdateres
-     innholdet til "Alle felter må fylles ut".*/
+    på alle attributtene, én og én som jeg har gjort tidligere putter jeg alle feilmeldingsID-tagene i et array. Deretter lar jeg en
+    forløkke iterere gjennom hele arrayet når "Alle felt må fylles ut"-feilmeldingen detekteres.
+    Bruker document.getElementById for å få tilgang til HTML-dokumentet, legger inn variabelen felt som parameter og bruker
+    text.content for at disse errorID-tagene nå skal vise teksten "Alle felt må fylles ut"*/
 
-    if (errorMeldinger.includes("Alle felter må fylles ut")) {
+    if (errorMeldinger.includes("Alle felt må fylles ut")) {
         const felt = ["errorAntall", "errorFornavn", "errorEtternavn", "errorTlf", "errorEpost"];
         felt.forEach(felt => {
-            document.getElementById(felt).textContent = "Alle felter må fylles ut";}
+            document.getElementById(felt).textContent = "Alle felt må fylles ut";}
         )
     }
 
@@ -207,7 +213,7 @@ Dersom det ikke matcher skal en feilmelding pushes inn i feilmeldingsarrayet*/
     /*Objektet legges til i arrayet kinoBilletterRegister*/
     kinoBilletterRegister.push(kunde);
 
-    /* Nullstiller alle inputbokser. Bruker getElementById for å viske ut verdiene direkte på HTML-siden.*/
+    /* Nullstiller alle inputbokser. Bruker getElementById for å viske ut verdiene på HTML-siden*/
     document.getElementById("velgFilm").value = "--Velg film--";
     document.getElementById("antall").value = "";
     document.getElementById("fornavn").value = "";

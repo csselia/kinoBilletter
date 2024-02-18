@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="no">
 <head>
     <meta charset="UTF-8">
     <title>Kinobilletter</title>
-    <!--Styler feilmeldingene rød, men ville egentlig gjort dette i css. Alle table data-elementer viss id begynner med error skal være røde-->
+    <!--Styler feilmeldingene rød, men ville egentlig gjort dette i CSS. Alle table data-elementer
+    viss id begynner med error skal være røde-->
     <style>
         td[id^="error"] {
             color: red;
@@ -15,8 +16,8 @@
 <body>
 <h1>Kinobillettbestilling</h1>
 
-<!--Lager en tabell for inputs. Den første er en drop-down meny for å velge filmer, og resten er personalia. Jeg setter en
-egen id på feilmeldinger for hver input i tabellen.-->
+<!--Lager en tabell for inputs. Den første er en drop-down meny for å velge filmer, og resten er personalia.
+Jeg setter en egen id på feilmeldinger for hver input i tabellen.-->
 
 <table>
     <tr>
@@ -33,8 +34,10 @@ egen id på feilmeldinger for hver input i tabellen.-->
             </select>
         </td>
     </tr>
+
     <tr>
-        <td id="errorFilm"></td></tr>
+        <td id="errorFilm"></td>
+    </tr>
 
     <!--Skriver inn en tittel slik at når man hover musen over feltet får brukeren en pekepinn hva som er tillatt i feltet. Feltene tar inn
     text-input. Egen data table celle for feilmeldinger så det vises ved siden av utfyllingsfeltet-->
@@ -54,8 +57,8 @@ egen id på feilmeldinger for hver input i tabellen.-->
         <td><input type="text" id="telefonnummer" title="Kun tall er tillatt"></td>
         <td id="errorTlf"></td></tr>
 
-    <tr><td>E-post</td><td>
-        <input type="text" id="epost" title="Kun bokstaver og tegn tillatt"></td></td>
+    <tr><td>E-post</td>
+        <td><input type="text" id="epost" title="Kun alfanumeriske tegn"></td>
         <td id="errorEpost"></td></tr>
 
     <!--Når brukeren trykker på knappen vil funksjonen registrer utløses-->
